@@ -1,2 +1,2 @@
-# linux_macos
+# limacos
 Linux kernel built natively on macOS

@@ -6,7 +6,7 @@ Linux kernel built natively on macOS
 ```
 git clone https://github.com/ownia/limacos.git
 cd limacos
-git submodule update --init
+git submodule update --init --progress
 ./limacos build
 ```
 

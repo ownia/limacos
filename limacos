@@ -18,14 +18,14 @@ build(){
 	export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 	cd linux
-	git restore include/uapi/
+	git checkout .
 	git apply "$root"/src/patch/*
 
 	if [ ! -f ".config" ]
 	then
 		make defconfig
 	fi
-	make -j8 HOSTCFLAGS="-I/Users/weiouy01/code/github/limacos/src/include"
+	make -j8 HOSTCFLAGS="-I$root/src/include"
 
 	cd "$root"
 }

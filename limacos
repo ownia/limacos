@@ -1,0 +1,54 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Weizhao Ouyang <o451686892@gmail.com>
+#
+
+set -e
+
+root=$(pwd)
+
+help(){
+	exit 1
+}
+
+build(){
+	export ARCH=arm64
+	export CROSS_COMPILE=aarch64-linux-gnu-
+	export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
+	cd linux
+	git restore include/uapi/
+	git apply "$root"/src/patch/*
+
+	if [ ! -f ".config" ]
+	then
+		make defconfig
+	fi
+	make -j8 HOSTCFLAGS="-I/Users/weiouy01/code/github/limacos/src/include"
+
+	cd "$root"
+}
+
+run_qemu(){
+	qemu-system-aarch64 \
+		-M virt -cpu cortex-a53 -nographic -smp 1 \
+		-kernel "$root"/linux/arch/arm64/boot/Image \
+		-append "rootwait root=/dev/vda console=ttyAMA0" \
+		-netdev user,id=eth0 -device virtio-net-device,netdev=eth0 \
+		-drive file="$root"/src/rootfs.ext4,if=none,format=raw,id=hd0 \
+		-device virtio-blk-device,drive=hd0
+}
+
+if [ "$#" -ne 1 ]
+then
+	help
+fi
+
+if [ "$1" = "build" ]
+then
+	build
+elif [ "$1" = "run" ]
+then
+	run_qemu
+fi

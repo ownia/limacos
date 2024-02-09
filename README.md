@@ -10,6 +10,14 @@ git submodule update --init
 source build.sh
 ```
 
+### dependencies
+
+```
+brew tap messense/macos-cross-toolchains
+brew install aarch64-unknown-linux-gnu
+brew install openssl
+```
+
 ### available version
 
 | tags     | commit                                   |
@@ -19,3 +27,7 @@ source build.sh
 
 ### tested devices
 
+| chip         | macOS            |
+|--------------|------------------|
+| Apple M1     | Sonoma 14.4 Beta |
+| Apple M2 Pro | Sonoma 14.0      |

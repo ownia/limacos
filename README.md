@@ -7,7 +7,12 @@ Linux kernel built natively on macOS
 git clone https://github.com/ownia/limacos.git
 cd limacos
 git submodule update --init
-source build.sh
+./limacos build
+```
+
+### run with qemu-system-aarch64
+```
+./limacos run
 ```
 
 ### dependencies

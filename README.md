@@ -11,6 +11,7 @@ git submodule update --init --progress
 ```
 
 ### run with qemu-system-aarch64
+
 ```
 ./limacos run
 ```
@@ -28,11 +29,23 @@ brew install openssl
 | tags     | commit                                   |
 |----------|------------------------------------------|
 | v6.8-rc3 | 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478 |
+| v6.9-rc3 | fec50db7033ea478773b159e0e2efb135270e3b7 |
 
 
 ### tested devices
 
-| chip         | macOS            |
-|--------------|------------------|
-| Apple M1     | Sonoma 14.4 Beta |
-| Apple M2 Pro | Sonoma 14.0      |
+| chip                                | macOS            |
+|-------------------------------------|------------------|
+| Apple M1                            | Sonoma 14.4 Beta |
+| Apple M2 Pro                        | Sonoma 14.0      |
+| GitHub-hosted runners macos-14 (M1) | Sonoma 14        |
+
+
+### update linux kernel tags
+
+```
+git submodule update --init --progress --depth=1
+git -C linux fetch --progress --depth=1 origin refs/tags/<tag>:refs/tags/<tag>
+git -C linux checkout <tag>
+```
+

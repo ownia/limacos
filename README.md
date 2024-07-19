@@ -30,6 +30,7 @@ brew install openssl
 |----------|------------------------------------------|
 | v6.8-rc3 | 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478 |
 | v6.9-rc3 | fec50db7033ea478773b159e0e2efb135270e3b7 |
+| v6.10    | 0c3836482481200ead7b416ca80c68a29cfdaabd |
 
 
 ### tested devices
@@ -37,7 +38,7 @@ brew install openssl
 | chip                                | macOS            |
 |-------------------------------------|------------------|
 | Apple M1                            | Sonoma 14.4 Beta |
-| Apple M2 Pro                        | Sonoma 14.0      |
+| Apple M2 Pro                        | Sonoma 14.5      |
 | GitHub-hosted runners macos-14 (M1) | Sonoma 14        |
 
 

@@ -19,13 +19,12 @@ build(){
 
 	cd linux
 	git checkout .
-	git apply "$root"/src/patch/*
 
 	if [ ! -f ".config" ]
 	then
 		make defconfig
 	fi
-	make -j `sysctl -n hw.logicalcpu` HOSTCFLAGS="-I$root/src/include"
+	make -j `sysctl -n hw.logicalcpu` HOSTCFLAGS="-I$root/src/include -D_UUID_T -D__GETHOSTUUID_H"
 
 	cd "$root"
 }

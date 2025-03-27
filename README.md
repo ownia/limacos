@@ -34,6 +34,7 @@ brew install openssl
 | v6.11    | 98f7e32f20d28ec452afb208f9cffc08448a2652 |
 | v6.12    | adc218676eef25575469234709c2d87185ca223a |
 | v6.13    | ffd294d346d185b70e28b1a28abe367bbfe53c04 |
+| v6.14    | 38fec10eb60d687e30c8c6b5420d86e8149f7557 |
 
 
 ### tested devices

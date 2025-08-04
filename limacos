@@ -14,7 +14,7 @@ help(){
 
 build(){
 	export ARCH=arm64
-	export CROSS_COMPILE=aarch64-linux-gnu-
+	export CROSS_COMPILE=aarch64-none-elf-
 	export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 	cd linux

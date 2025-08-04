@@ -16,14 +16,6 @@ git submodule update --init --progress
 ./limacos run
 ```
 
-### dependencies
-
-```
-brew tap messense/macos-cross-toolchains
-brew install aarch64-unknown-linux-gnu
-brew install openssl
-```
-
 ### available version
 
 | tags     | commit                                   |
@@ -36,7 +28,7 @@ brew install openssl
 | v6.13    | ffd294d346d185b70e28b1a28abe367bbfe53c04 |
 | v6.14    | 38fec10eb60d687e30c8c6b5420d86e8149f7557 |
 | v6.15    | 0ff41df1cb268fc69e703a08a57ee14ae967d0ca |
-
+| v6.16    | 038d61fd642278bab63ee8ef722c50d10ab01e8f |
 
 ### tested devices
 
@@ -45,7 +37,6 @@ brew install openssl
 | Apple M1                            | Sonoma 14.4 Beta |
 | Apple M2 Pro                        | Sonoma 14.5      |
 | GitHub-hosted runners macos-14 (M1) | Sonoma 14        |
-
 
 ### update linux kernel tags
 

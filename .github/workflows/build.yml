@@ -9,13 +9,12 @@ on:
 jobs:
   build:
     name: build image
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
     - name: prepare dependencies
       run:
         brew install make openssl;
-        brew tap messense/macos-cross-toolchains;
-        brew install aarch64-unknown-linux-gnu;
+        brew install gcc-aarch64-embedded
     - uses: actions/checkout@v4
       with:
         submodules: recursive

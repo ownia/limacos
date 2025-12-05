@@ -20,6 +20,8 @@ build(){
 	cd linux
 	git checkout .
 
+	git apply "$root/src/patch/v6.18-0001.patch"
+
 	if [ ! -f ".config" ]
 	then
 		make defconfig

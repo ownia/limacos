@@ -13,6 +13,7 @@ jobs:
     steps:
     - name: prepare dependencies
       run:
+        brew update;
         brew install make openssl;
         brew install gcc-aarch64-embedded
     - uses: actions/checkout@v4

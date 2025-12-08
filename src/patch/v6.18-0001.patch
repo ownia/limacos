@@ -1,0 +1,55 @@
+diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
+index cd788cac9d91..991b59ffb4c2 100644
+--- a/scripts/Makefile.vmlinux
++++ b/scripts/Makefile.vmlinux
+@@ -113,7 +113,7 @@ vmlinux: vmlinux.unstripped FORCE
+ # what kmod expects to parse.
+ quiet_cmd_modules_builtin_modinfo = GEN     $@
+       cmd_modules_builtin_modinfo = $(cmd_objcopy); \
+-                                    sed -i 's/\x00\+$$/\x00/g' $@
++                                    gsed -i 's/\x00\+$$/\x00/g' $@
+ 
+ OBJCOPYFLAGS_modules.builtin.modinfo := -j .modinfo -O binary
+ 
+diff --git a/usr/gen_init_cpio.c b/usr/gen_init_cpio.c
+index b7296edc6626..ec095338c0da 100644
+--- a/usr/gen_init_cpio.c
++++ b/usr/gen_init_cpio.c
+@@ -367,7 +367,6 @@ static int cpio_mkfile(const char *name, const char *location,
+ 	int namesize, namepadlen;
+ 	unsigned int i;
+ 	uint32_t csum = 0;
+-	ssize_t this_read;
+ 
+ 	mode |= S_IFREG;
+ 
+@@ -456,19 +455,9 @@ static int cpio_mkfile(const char *name, const char *location,
+ 		    push_pad(namepadlen ? namepadlen : padlen(offset, 4)) < 0)
+ 			goto error;
+ 
+-		if (size) {
+-			this_read = copy_file_range(file, NULL, outfd, NULL, size, 0);
+-			if (this_read > 0) {
+-				if (this_read > size)
+-					goto error;
+-				offset += this_read;
+-				size -= this_read;
+-			}
+-			/* short or failed copy falls back to read/write... */
+-		}
+-
+ 		while (size) {
+ 			unsigned char filebuf[65536];
++			ssize_t this_read;
+ 			size_t this_size = MIN(size, sizeof(filebuf));
+ 
+ 			this_read = read(file, filebuf, this_size);
+@@ -674,7 +663,7 @@ int main (int argc, char *argv[])
+ 			break;
+ 		case 'o':
+ 			outfd = open(optarg,
+-				     O_WRONLY | O_CREAT | O_LARGEFILE | O_TRUNC,
++				     O_WRONLY | O_CREAT | O_TRUNC,
+ 				     0600);
+ 			if (outfd < 0) {
+ 				fprintf(stderr, "failed to open %s\n", optarg);

@@ -1,16 +1,16 @@
 diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
-index cd788cac9d91..991b59ffb4c2 100644
+index 276c3134a563..9478e496e02d 100644
 --- a/scripts/Makefile.vmlinux
 +++ b/scripts/Makefile.vmlinux
 @@ -113,7 +113,7 @@ vmlinux: vmlinux.unstripped FORCE
  # what kmod expects to parse.
  quiet_cmd_modules_builtin_modinfo = GEN     $@
        cmd_modules_builtin_modinfo = $(cmd_objcopy); \
--                                    sed -i 's/\x00\+$$/\x00/g' $@
-+                                    gsed -i 's/\x00\+$$/\x00/g' $@
+-                                    sed -i 's/\x00\+$$/\x00/g' $@; \
++                                    gsed -i 's/\x00\+$$/\x00/g' $@; \
+                                     chmod -x $@
  
  OBJCOPYFLAGS_modules.builtin.modinfo := -j .modinfo -O binary
- 
 diff --git a/usr/gen_init_cpio.c b/usr/gen_init_cpio.c
 index b7296edc6626..ec095338c0da 100644
 --- a/usr/gen_init_cpio.c

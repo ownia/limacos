@@ -1,5 +1,18 @@
+diff --git a/arch/arm64/tools/gen-kernel-hwcaps.sh b/arch/arm64/tools/gen-kernel-hwcaps.sh
+index e7cdcf428d91..c5307fc6a5c0 100644
+--- a/arch/arm64/tools/gen-kernel-hwcaps.sh
++++ b/arch/arm64/tools/gen-kernel-hwcaps.sh
+@@ -17,7 +17,7 @@ echo "/* Generated file - do not edit */"
+ echo ""
+ 
+ grep -E '^#define HWCAP[0-9]*_[A-Z0-9_]+' $1 | \
+-	sed 's/.*HWCAP\([0-9]*\)_\([A-Z0-9_]\+\).*/#define KERNEL_HWCAP_\2\t__khwcap\1_feature(\2)/'
++	gsed 's/.*HWCAP\([0-9]*\)_\([A-Z0-9_]\+\).*/#define KERNEL_HWCAP_\2\t__khwcap\1_feature(\2)/'
+ 
+ echo ""
+ echo "#endif /* __ASM_KERNEL_HWCAPS_H */"
 diff --git a/scripts/Makefile.vmlinux b/scripts/Makefile.vmlinux
-index 276c3134a563..9478e496e02d 100644
+index fcae1e432d9a..d392610982a0 100644
 --- a/scripts/Makefile.vmlinux
 +++ b/scripts/Makefile.vmlinux
 @@ -113,7 +113,7 @@ vmlinux: vmlinux.unstripped FORCE
